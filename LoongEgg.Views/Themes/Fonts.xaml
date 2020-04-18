@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:LoongEgg.Views"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--  使用自定义字体 #后面的字体名字请在资源管理器打开你的字体文件找到名字填进去  -->
+    <FontFamily x:Key="Fonts.Icon">pack://application:,,,/LoongEgg.Views;component/Assets/#Font Awesome 5 Free Solid</FontFamily>
+
+    <!--  定义一个图标“字”的静态资源  -->
+    <system:String x:Key="Icons.PowerOff">&#xf011;</system:String>
+
+</ResourceDictionary>

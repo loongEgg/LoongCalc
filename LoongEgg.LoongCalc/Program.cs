@@ -19,14 +19,13 @@ namespace LoongEgg.LoongCalc
     class Program
     {
         // TODO: 23-6 在控制台中启动WPF窗体
-        [STAThread] // 不要忘了这个标注
+        [STAThread]// 不要忘了这个标注
         static void Main(string[] args) {
             CalculatorView view = new CalculatorView();
 
             Application app = new Application();
 
             app.Run(view);
-
         }
     }
 }

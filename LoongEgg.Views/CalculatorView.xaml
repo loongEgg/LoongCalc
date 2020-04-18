@@ -15,6 +15,15 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  因为所有资源都被集合到Generic.xaml，所以只需要引用它  -->
+                <ResourceDictionary Source="/LoongEgg.Views;component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <!--  切割圆角  -->
     <Window.Clip>
         <RectangleGeometry
@@ -22,5 +31,12 @@
             RadiusY="30"
             Rect="0,0, 360, 500" />
     </Window.Clip>
-    <Grid />
+
+    <Grid>
+        <!--  字体和“字”都被定义到了静态资源，更易使用  -->
+        <Button
+            Content="{StaticResource Icons.PowerOff}"
+            FontFamily="{StaticResource Fonts.Icon}"
+            FontSize="56" />
+    </Grid>
 </Window>
