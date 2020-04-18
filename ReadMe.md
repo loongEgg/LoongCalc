@@ -157,3 +157,111 @@ namespace LoongEgg.LoongCalc
 </Window>
 
 ```
+
+## 25-Blend中立体感按钮拟态化WPF样式设计
+![25.Button](Figures/25.Button.png)
+- 立体感的实现是用了两个叠在一起的图形，一个使用亮色阴影一个暗色阴影营造的
+- 可以将自定义图形生成Button时额外包一个ViewBox实现尺寸的自适应
+```xml
+<Window
+    x:Class="LoongEgg.Views.CalculatorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LoongEgg.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="CalculatorView"
+    Width="360"
+    Height="500"
+    AllowsTransparency="True"
+    Background="#FFB4D2EC"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  因为所有资源都被集合到Generic.xaml，所以只需要引用它  -->
+                <ResourceDictionary Source="/LoongEgg.Views;component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  关机键  -->
+            <Style x:Key="ButtonStyles.PowerOff" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <!--  额外包了一层ViewBox实现控件的自适应缩放  -->
+                            <Viewbox>
+                                <Grid>
+                                    <Grid>
+                                        <Ellipse
+                                            Width="80"
+                                            Height="80"
+                                            Margin="5"
+                                            HorizontalAlignment="Center"
+                                            Fill="#FFB4D2EC">
+                                            <Ellipse.Effect>
+                                                <DropShadowEffect />
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                        <Ellipse
+                                            Width="80"
+                                            Height="80"
+                                            Margin="5"
+                                            HorizontalAlignment="Center"
+                                            Fill="#FFB4D2EC">
+                                            <Ellipse.Effect>
+                                                <DropShadowEffect Direction="135" Color="#FFF4FAFF" />
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                    </Grid>
+                                    <ContentPresenter
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        RecognizesAccessKey="True"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Grid>
+                            </Viewbox>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True" />
+                                <Trigger Property="IsDefaulted" Value="True" />
+                                <Trigger Property="IsMouseOver" Value="True" />
+                                <Trigger Property="IsPressed" Value="True" />
+                                <Trigger Property="IsEnabled" Value="False" />
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!--  切割圆角  -->
+    <Window.Clip>
+        <RectangleGeometry
+            RadiusX="30"
+            RadiusY="30"
+            Rect="0,0, 360, 500" />
+    </Window.Clip>
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <!--  字体和“字”都被定义到了静态资源，更易使用  -->
+            <!--  关机键  -->
+            <Button
+                x:Name="button"
+                Width="130"
+                Height="130"
+                Content="{StaticResource Icons.PowerOff}"
+                FontFamily="{StaticResource Fonts.Icon}"
+                FontSize="50"
+                Foreground="Chocolate"
+                Style="{DynamicResource ButtonStyles.PowerOff}" />
+
+        </StackPanel>
+    </Grid>
+</Window>
+
+```

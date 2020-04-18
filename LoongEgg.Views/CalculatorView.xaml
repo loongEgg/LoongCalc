@@ -21,6 +21,55 @@
                 <!--  因为所有资源都被集合到Generic.xaml，所以只需要引用它  -->
                 <ResourceDictionary Source="/LoongEgg.Views;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!--  关机键  -->
+            <Style x:Key="ButtonStyles.PowerOff" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <!--  额外包了一层ViewBox实现控件的自适应缩放  -->
+                            <Viewbox>
+                                <Grid>
+                                    <Grid>
+                                        <Ellipse
+                                            Width="80"
+                                            Height="80"
+                                            Margin="5"
+                                            HorizontalAlignment="Center"
+                                            Fill="#FFB4D2EC">
+                                            <Ellipse.Effect>
+                                                <DropShadowEffect />
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                        <Ellipse
+                                            Width="80"
+                                            Height="80"
+                                            Margin="5"
+                                            HorizontalAlignment="Center"
+                                            Fill="#FFB4D2EC">
+                                            <Ellipse.Effect>
+                                                <DropShadowEffect Direction="135" Color="#FFF4FAFF" />
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                    </Grid>
+                                    <ContentPresenter
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        RecognizesAccessKey="True"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Grid>
+                            </Viewbox>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True" />
+                                <Trigger Property="IsDefaulted" Value="True" />
+                                <Trigger Property="IsMouseOver" Value="True" />
+                                <Trigger Property="IsPressed" Value="True" />
+                                <Trigger Property="IsEnabled" Value="False" />
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -33,10 +82,19 @@
     </Window.Clip>
 
     <Grid>
-        <!--  字体和“字”都被定义到了静态资源，更易使用  -->
-        <Button
-            Content="{StaticResource Icons.PowerOff}"
-            FontFamily="{StaticResource Fonts.Icon}"
-            FontSize="56" />
+        <StackPanel VerticalAlignment="Center">
+            <!--  字体和“字”都被定义到了静态资源，更易使用  -->
+            <!--  关机键  -->
+            <Button
+                x:Name="button"
+                Width="130"
+                Height="130"
+                Content="{StaticResource Icons.PowerOff}"
+                FontFamily="{StaticResource Fonts.Icon}"
+                FontSize="50"
+                Foreground="Chocolate"
+                Style="{DynamicResource ButtonStyles.PowerOff}" />
+
+        </StackPanel>
     </Grid>
 </Window>
