@@ -10,6 +10,7 @@
     Height="500"
     AllowsTransparency="True"
     Background="#FFB4D2EC"
+    FontSize="22"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -70,6 +71,91 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!--  单位切换  -->
+            <Style x:Key="ToggleButtonStyles.Default" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <ControlTemplate.Resources>
+                                <Storyboard x:Key="IsCheckStoryboard">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="2" />
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(ContentControl.Content)">
+                                        <DiscreteObjectKeyFrame KeyTime="0:0:0.6" Value="Rad" />
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </ControlTemplate.Resources>
+                            <Grid>
+                                <Rectangle
+                                    x:Name="rectangle"
+                                    Fill="Chocolate"
+                                    RadiusX="12"
+                                    RadiusY="12">
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect />
+                                    </Rectangle.Effect>
+                                </Rectangle>
+                                <ContentPresenter
+                                    x:Name="contentPresenter"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard x:Name="IsCheckStoryboard_BeginStoryboard" Storyboard="{StaticResource IsCheckStoryboard}" />
+                                    </Trigger.ExitActions>
+                                    <Trigger.EnterActions>
+                                        <RemoveStoryboard BeginStoryboardName="IsCheckStoryboard_BeginStoryboard" />
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ButtonStyle.Default" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ControlTemplate.Resources>
+                                <Storyboard x:Key="OnClick1">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)" Storyboard.TargetName="rectangle">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="2"/>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="5"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </ControlTemplate.Resources>
+                            <Grid>
+                                <Rectangle x:Name="rectangle"
+                                    Fill="#FFD9E9F7"
+                                    RadiusX="12"
+                                    RadiusY="12">
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect />
+                                    </Rectangle.Effect>
+                                </Rectangle>
+                                <ContentPresenter
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="ButtonBase.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource OnClick1}"/>
+                                </EventTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
         </ResourceDictionary>
     </Window.Resources>
 
@@ -82,6 +168,7 @@
     </Window.Clip>
 
     <Grid>
+
         <StackPanel VerticalAlignment="Center">
             <!--  字体和“字”都被定义到了静态资源，更易使用  -->
             <!--  关机键  -->
@@ -120,7 +207,19 @@
                     RadiusX="9"
                     RadiusY="9" />
             </Grid>
+            <Button
+                Width="60"
+                Height="36"
+                Margin="20"
+                Content="9"
+                Style="{DynamicResource ButtonStyle.Default}" />
 
+            <ToggleButton
+                Width="60"
+                Height="36"
+                Margin="20"
+                Content="Deg"
+                Style="{DynamicResource ToggleButtonStyles.Default}" />
         </StackPanel>
     </Grid>
 </Window>
