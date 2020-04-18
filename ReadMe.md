@@ -265,3 +265,30 @@ namespace LoongEgg.LoongCalc
 </Window>
 
 ```
+## 26-WPF控件仿液晶屏拟态三维效果
+```xml
+<!--  下陷立体感液晶屏  -->
+            <Grid Height="120" Margin="20,0,20,0">
+                <Grid.Clip>
+                    <RectangleGeometry
+                        RadiusX="12"
+                        RadiusY="12"
+                        Rect="0,0, 320, 120" />
+                </Grid.Clip>
+                <Rectangle Fill="White" Opacity="0.5" />
+                <Canvas x:Name="canvas">
+                    <Path
+                        Width="{Binding ElementName=canvas, Path=ActualWidth}"
+                        Height="{Binding ElementName=canvas, Path=ActualHeight}"
+                        Fill="Black"
+                        Opacity="0.5">
+                        <Path.Data>M0,0 L320,0  L300,20 L20,100  L0,120</Path.Data>
+                    </Path>
+                </Canvas>
+                <Rectangle
+                    Margin="10"
+                    Fill="#FF343434"
+                    RadiusX="9"
+                    RadiusY="9" />
+            </Grid>
+```
