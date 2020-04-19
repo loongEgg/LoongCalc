@@ -293,3 +293,49 @@ namespace LoongEgg.LoongCalc
             </Grid>
 ```
 ## 27-ToggleButton和Button的动画样式
+- 在Blend中可以图形化设计和预览
+- 
+## 28-用UniformGrid快速完成布局
+- 比Grid方便在于不用定义Grid.Row和Grid.Column,依次放进去进好
+- 如果要空掉某个位置，放一个控件进去，然后Visibility=Hidden就
+
+# C#编程高级入门，数学表达式解析与计算
+## 29-逆波兰表达式与TokenType, 新建类库
+- 逆波兰表达式
+```c#
+    /// 中缀表达式   2 + 3 * (4 -5)
+    /// 逆波兰表达式 [2][3][4][5][-][*][+]
+```
+- TokenType.cs
+```c#
+    /// <summary>
+    /// Token的类型枚举
+    /// </summary>
+    public enum TokenType
+    {
+        /// <summary>
+        /// 运算符：+ - * / ^
+        /// </summary>
+        Operator,
+
+        /// <summary>
+        /// 函  数：cos sin etc..
+        /// </summary>
+        Function,
+
+        /// <summary>
+        /// 操作数：.0123456789
+        /// </summary>
+        Operand,
+         
+        /// <summary>
+        /// 左括号：(
+        /// </summary>
+        LeftBracket,
+
+        /// <summary>
+        ///  右括号：)
+        /// </summary>
+        RightBracket,
+    }
+```

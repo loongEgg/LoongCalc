@@ -11,6 +11,7 @@
     AllowsTransparency="True"
     Background="#FFB4D2EC"
     FontSize="22"
+    FontWeight="Bold"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -74,6 +75,8 @@
 
             <!--  单位切换  -->
             <Style x:Key="ToggleButtonStyles.Default" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Width" Value="60" />
+                <Setter Property="Height" Value="36" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -119,21 +122,26 @@
                 </Setter>
             </Style>
 
+            <!--  普通按钮  -->
             <Style x:Key="ButtonStyle.Default" TargetType="{x:Type Button}">
+                <Setter Property="Width" Value="60" />
+                <Setter Property="Height" Value="36" />
+                <Setter Property="Background" Value="#FFD9E9F7" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <ControlTemplate.Resources>
                                 <Storyboard x:Key="OnClick1">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)" Storyboard.TargetName="rectangle">
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="2"/>
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="5"/>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="2" />
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="5" />
                                     </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>
                             </ControlTemplate.Resources>
                             <Grid>
-                                <Rectangle x:Name="rectangle"
-                                    Fill="#FFD9E9F7"
+                                <Rectangle
+                                    x:Name="rectangle"
+                                    Fill="{TemplateBinding Background}"
                                     RadiusX="12"
                                     RadiusY="12">
                                     <Rectangle.Effect>
@@ -148,7 +156,7 @@
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <EventTrigger RoutedEvent="ButtonBase.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource OnClick1}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource OnClick1}" />
                                 </EventTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -167,59 +175,97 @@
             Rect="0,0, 360, 500" />
     </Window.Clip>
 
-    <Grid>
+    <Grid Margin="20,10,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--  字体和“字”都被定义到了静态资源，更易使用  -->
+        <!--  关机键  -->
+        <Button
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Left"
+            Content="{StaticResource Icons.PowerOff}"
+            FontFamily="{StaticResource Fonts.Icon}"
+            FontSize="50"
+            Foreground="Chocolate"
+            Style="{DynamicResource ButtonStyles.PowerOff}" />
 
-        <StackPanel VerticalAlignment="Center">
-            <!--  字体和“字”都被定义到了静态资源，更易使用  -->
-            <!--  关机键  -->
-            <Button
-                x:Name="button"
-                Width="90"
-                Height="90"
-                Margin="20"
-                Content="{StaticResource Icons.PowerOff}"
-                FontFamily="{StaticResource Fonts.Icon}"
-                FontSize="50"
-                Foreground="Chocolate"
-                Style="{DynamicResource ButtonStyles.PowerOff}" />
+        <!--  下陷立体感液晶屏  -->
+        <Grid
+            Grid.Row="1"
+            Height="120"
+            Margin="0,10,0,10">
+            <Grid.Clip>
+                <RectangleGeometry
+                    RadiusX="12"
+                    RadiusY="12"
+                    Rect="0,0, 320, 120" />
+            </Grid.Clip>
+            <Rectangle Fill="White" Opacity="0.5" />
+            <Canvas x:Name="canvas">
+                <Path
+                    Width="{Binding ElementName=canvas, Path=ActualWidth}"
+                    Height="{Binding ElementName=canvas, Path=ActualHeight}"
+                    Fill="Black"
+                    Opacity="0.5">
+                    <Path.Data>M0,0 L320,0  L300,20 L20,100  L0,120</Path.Data>
+                </Path>
+            </Canvas>
+            <Rectangle
+                Margin="10"
+                Fill="#FF343434"
+                RadiusX="9"
+                RadiusY="9" />
+        </Grid>
 
-            <!--  下陷立体感液晶屏  -->
-            <Grid Height="120" Margin="20,0,20,0">
-                <Grid.Clip>
-                    <RectangleGeometry
-                        RadiusX="12"
-                        RadiusY="12"
-                        Rect="0,0, 320, 120" />
-                </Grid.Clip>
-                <Rectangle Fill="White" Opacity="0.5" />
-                <Canvas x:Name="canvas">
-                    <Path
-                        Width="{Binding ElementName=canvas, Path=ActualWidth}"
-                        Height="{Binding ElementName=canvas, Path=ActualHeight}"
-                        Fill="Black"
-                        Opacity="0.5">
-                        <Path.Data>M0,0 L320,0  L300,20 L20,100  L0,120</Path.Data>
-                    </Path>
-                </Canvas>
-                <Rectangle
-                    Margin="10"
-                    Fill="#FF343434"
-                    RadiusX="9"
-                    RadiusY="9" />
-            </Grid>
-            <Button
-                Width="60"
-                Height="36"
-                Margin="20"
-                Content="9"
-                Style="{DynamicResource ButtonStyle.Default}" />
+        <Grid Grid.Row="2" Margin="-10,0,-10,0">
+            <UniformGrid Columns="4" Rows="6">
+                <!--  第0行  -->
+                <ToggleButton Content="Deg" Style="{DynamicResource ToggleButtonStyles.Default}" />
+                <Button Style="{DynamicResource ButtonStyle.Default}" Visibility="Hidden" />
+                <Button Style="{DynamicResource ButtonStyle.Default}" Visibility="Hidden" />
+                <Button
+                    Content="C"
+                    Foreground="Chocolate"
+                    Style="{DynamicResource ButtonStyle.Default}" />
 
-            <ToggleButton
-                Width="60"
-                Height="36"
-                Margin="20"
-                Content="Deg"
-                Style="{DynamicResource ToggleButtonStyles.Default}" />
-        </StackPanel>
+                <!--  第1行  -->
+                <Button Content="Cos" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="Sin" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="^" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="+/-" Style="{DynamicResource ButtonStyle.Default}" />
+
+                <!--  第2行  -->
+                <Button Content="9" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="8" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="7" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="+" Style="{DynamicResource ButtonStyle.Default}" />
+
+                <!--  第3行  -->
+                <Button Content="6" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="5" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="4" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="-" Style="{DynamicResource ButtonStyle.Default}" />
+
+                <!--  第4行  -->
+                <Button Content="3" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="2" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="1" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="*" Style="{DynamicResource ButtonStyle.Default}" />
+
+                <!--  第5行  -->
+                <Button Content="0" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="." Style="{DynamicResource ButtonStyle.Default}" />
+                <Button
+                    Background="Chocolate"
+                    Content="="
+                    Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="/" Style="{DynamicResource ButtonStyle.Default}" />
+
+            </UniformGrid>
+        </Grid>
     </Grid>
 </Window>
