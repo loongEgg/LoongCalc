@@ -437,3 +437,165 @@ namespace LoongEgg.MathPro
         }
     }
 ```
+## 31-词元优先级、类型判断，[partial]分布类
+
+1. 词元的基本属性， [partial]分部类
+```c#
+/* 
+ | 个人微信：InnerGeeker
+ | 联系邮箱：LoongEgg@163.com 
+ | 创建时间：2020/4/19 21:42:45
+ | 主要用途：Token的分部类 > 属性和构造器
+ | 更改记录：
+ |			 时间		版本		更改
+ */
+using System;
+
+namespace LoongEgg.MathPro
+{
+    // TODO: 31-1 词元的基本属性， [partial]分部类
+    /// <summary>
+    /// 数学表达式的词元
+    /// </summary>
+    public partial class Token
+    {
+        /*-------------------------------------- Properties -------------------------------------*/
+        /// <summary>
+        /// 词元的类型
+        /// </summary>
+        public TokenType Type { get; private set; }
+
+        /// <summary>
+        /// 将原字符串全部.ToLower()
+        /// </summary>
+        public string NormalizeString { get; private set; }
+
+        /// <summary>
+        /// 运算的优先级
+        /// </summary>
+        public int Priority { get; private set; } = -1;
+
+        /*------------------------------------- Constructors ------------------------------------*/
+        /// <summary>
+        /// 主构造器
+        /// </summary>
+        /// <param name="token"></param>
+        public Token(string token) {
+            this.NormalizeString = token.ToLower();
+            this.Type = GetTokenType(token);
+            this.Priority = GetTokenPriority(Type, NormalizeString);
+        }
+
+        public Token(char token) : this(token.ToString()) { }
+    }
+}
+
+```
+
+2. 类型获取
+```c#
+using System;
+
+/* 
+ | 个人微信：InnerGeeker
+ | 联系邮箱：LoongEgg@163.com 
+ | 创建时间：2020/4/19 21:46:58
+ | 主要用途：Token的分部类 > 公共静态方法
+ | 更改记录：
+ |			 时间		版本		更改
+ */
+namespace LoongEgg.MathPro
+{
+    
+    public partial class Token
+    { 
+        /*------------------------------------ Public Methods -----------------------------------*/
+        // TODO: 31-2 类型判断
+        /// <summary>
+        /// 获取Token的类型
+        /// </summary> 
+        public static TokenType GetTokenType(char c) {
+            if (c.IsDigit()) {
+                if (c == '.') throw new ArgumentException("<.>不能独立成为操作数");
+                return TokenType.Operand;
+            }
+            else if (c.IsOperator()) {
+                return TokenType.Operator;
+            }
+            else if (c.IsLeftBracket()) {
+                return TokenType.LeftBracket;
+            }else if (c.IsRightBracket()) {
+                return TokenType.RightBracket;
+            }
+            else {
+                throw new ArgumentException($"{c} 不合适的TokenType");
+            }
+        }
+
+        /// <summary>
+        /// 获取Token的类型
+        /// </summary> 
+        public static TokenType GetTokenType(string token) {
+            if (token == null)
+                throw new ArgumentNullException("token");
+
+            // 一个字符长度
+            if (token.Length == 1) {
+                return GetTokenType(token[0]);
+            }
+            else {
+                // 操作数
+                if(double.TryParse(token, out double d)) {
+                    return TokenType.Operand;
+                }
+                else { // 函数
+                    return TokenType.Function;
+                }
+            }
+        } 
+       
+    }
+}
+
+```
+
+3. 优先级获取
+```c#
+        // TODO: 31-3 优先级
+        /// <summary>
+        /// token的运算级别
+        /// </summary>
+        /// <param name="type">token的类型</param>
+        /// <param name="token">ToLower后的token字符串</param>
+        /// <returns>运算级数字别大的优先</returns>
+        public static int GetTokenPriority(TokenType type, string token) {
+
+            int priority = -1;
+
+            switch (type) {
+                case TokenType.Operator: {
+                        if ("+-".Contains(token))
+                            priority = 1;
+                        else if ("*/".Contains(token))
+                            priority = 2;
+                        else if (token == "^")
+                            priority = 3;
+                        else
+                            throw new Exception($"Unknow math operator: {token}");
+                    }
+                    break;
+
+                case TokenType.Function:
+                    priority = 4;
+                    break;
+
+                case TokenType.Operand: 
+                case TokenType.LeftBracket: 
+                case TokenType.RightBracket:
+                    priority = -1;
+                    break;
+            }
+
+            return priority;
+        }
+```

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoongEgg.MathPro.Test
 {
+    // TODO 30-2 字符串扩展的单元测试
     [TestClass]
     public class CharExtensions_Test
     {
