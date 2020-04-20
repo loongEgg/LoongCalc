@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CharExtensions_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Token_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -599,3 +599,60 @@ namespace LoongEgg.MathPro
             return priority;
         }
 ```
+## 32-[C#]数学表达式的解析转译，单元测试的调试
+1. 转译字符串到Token, 重写ToString()，String的方法扩展 
+```Token.cs```
+```c#
+ // TODO: 32-1 转译字符串到Token
+        /// <summary>
+        /// 将字符串转译成<see cref="Token"/>的集合
+        /// </summary>
+        /// <param name="inp">待转译的字符串</param>
+        /// <returns></returns>
+        public static List<Token> Tokenize(string inp) {
+            var ret = new List<Token>();
+            var str = inp.RemoveSpace(); // 即str.Replace(" ", string.Empty);
+
+            int i = 0;
+            int cnt = str.Length;
+            char c;
+            StringBuilder token = new StringBuilder();
+            while (i < cnt) {
+                c = str[i];
+                token = new StringBuilder(c.ToString()); 
+
+                if (c.IsDigit()) { // 如果是数字
+                    while (i + 1 < cnt && str[i+1].IsDigit()) {
+                        token.Append(str[i + 1]);
+                        i += 1;
+                    }
+                }else if (c.IsLetter()) { // 如果是字母
+                     while (i + 1 < cnt && str[i+1].IsLetter()) {
+                        token.Append(str[i + 1]);
+                        i += 1;
+                    }
+                }else if (c.IsOperator()) {// 如果字符串或者左括号后面的第一个字符是负号 
+                    if (c == '-' && (i == 0 || (i > 0 && str[i - 1].IsLeftBracket()))) {
+                        while (i + 1 < cnt && str[i + 1].IsDigit()) {
+                            token.Append(str[i + 1]);
+                            i += 1;
+                        }
+                    }
+                }else if( c.IsLeftBracket() || c.IsRightBracket()) {
+                    // do nothing
+                }
+                else {
+                    throw new ArgumentException($"Undefine char : {c}");
+                }
+
+                ret.Add(new Token(token.ToString()));
+                i += 1;
+            }
+
+            return ret;
+        }
+
+```
+2. 单元测试
+```c#
+```
