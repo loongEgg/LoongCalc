@@ -697,7 +697,7 @@ namespace LoongEgg.MathPro
         private static double CalculateFun(string fun, double d) {
             switch (fun) {
                 case "cos": return Math.Cos(d * Deg2Rad);
-                case "sin": return Math.Cos(d * Deg2Rad);
+                case "sin": return Math.Sin(d * Deg2Rad);
                 case "sqr": return d * d;
                 case "sqrt": return Math.Sqrt(d);
 
