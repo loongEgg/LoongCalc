@@ -656,7 +656,6 @@ namespace LoongEgg.MathPro
 2. 单元测试
 ```c#
 ```
-
 ## 33-数学运算和函数运算的核心方法
 ```c#
 using System;
@@ -708,3 +707,5 @@ namespace LoongEgg.MathPro
 }
 
 ```
+
+## 34-[C#]值类型、引用类型和ref的大坑
