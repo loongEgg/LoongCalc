@@ -23,10 +23,13 @@ namespace LoongEgg.LoongCalc
         // TODO: 23-6 在控制台中启动WPF窗体
         [STAThread]// 不要忘了这个标注
         static void Main(string[] args) {
-            // 后进先出 Stack
+            Logger.EnableAll();
 
+            CalculatorView view = new CalculatorView();
 
-            // 先进先出 Queue
+            Application app = new Application();
+
+            app.Run(view);
         }
 
         // TODO: 35-1 Stack,Queue

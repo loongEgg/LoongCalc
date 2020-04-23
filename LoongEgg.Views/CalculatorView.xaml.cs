@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoongEgg.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace LoongEgg.Views
     {
         public CalculatorView() {
             InitializeComponent();
+            // TODO: 36-3
+            DataContext = new CalculatorViewModel();
         }
 
         // TODO: 23-3 窗体移动代码

@@ -9,7 +9,6 @@
 ## 22-如何在VS中生成MarkDown文件
 - ```MarkdownEditor Editor```需要安装这个插件
 - 插入图片时名字有空格或者特殊字符可能出错
-
 ## 23-圆角无边框窗体移动、在控制台启动WPF、不显示控制台窗体
 1. 窗体无边框设置
 ```xml
@@ -78,7 +77,6 @@ namespace LoongEgg.LoongCalc
 ![23.Console Set](Figures/23.ConsoleSet.png)
 
 ![Dinosaur](Figures/Dinosaur.png)
-
 ## 24-在程序集正确引用资源
 **尽量用绝对路径**
 1. 在新建的``Themes\Fonts.xaml``资源字典引用外部自定义字体  
@@ -157,7 +155,6 @@ namespace LoongEgg.LoongCalc
 </Window>
 
 ```
-
 ## 25-Blend中立体感按钮拟态化WPF样式设计
 ![25.Button](Figures/25.Button.png)
 - 立体感的实现是用了两个叠在一起的图形，一个使用亮色阴影一个暗色阴影营造的
@@ -708,7 +705,6 @@ namespace LoongEgg.MathPro
 
 ```
 ## 34-[C#]值类型、引用类型和ref的大坑
-
 ## 35-Stack, Queue, 逆波兰后缀表达式的解法
 
 1. 堆和栈的理解
@@ -759,7 +755,6 @@ namespace LoongEgg.MathPro
             Console.ReadKey();
         }
 ```
-
 2. List to Queue, 将中缀表达式转为后缀表达式
 ```c#
 // TODO: 35-2 List to Queue, 将中缀表达式转为后缀表达式
@@ -943,4 +938,45 @@ namespace LoongEgg.MathPro
             }
         }
 
+```
+
+# Model、View和ViewModel的交互
+## 36-后端输入命令和UI中的Button通过Commmand binding实现交互
+1. 引用MVVM框架
+2. 创建一个继承BaseViewModel的类
+```c#
+   public class CalculatorViewModel: BaseViewModel
+    { 
+        /*------------------------------------- Properties --------------------------------------*/
+        // TODO:
+        public ICommand InputCommand { get; private set; } 
+
+        /*------------------------------------- Constructor -------------------------------------*/
+        public CalculatorViewModel() {
+            InputCommand = new DelegateCommand(Input);
+        }
+
+        /*------------------------------------ Public Methods -----------------------------------*/ 
+        public void Input(object input) {
+            Logger.WriteInfor("Sth input ...");
+        }
+    }
+```
+3. 创建一个DelegateCommand并binding到UI 
+```c#
+   /// <summary>
+    /// CalculatorView.xaml 的交互逻辑
+    /// </summary>
+    public partial class CalculatorView : Window
+    {
+        public CalculatorView() {
+            InitializeComponent();
+            DataContext = new CalculatorViewModel();
+        }
+
+        // TODO: 23-3 窗体移动代码
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            DragMove();
+        }
+    }
 ```

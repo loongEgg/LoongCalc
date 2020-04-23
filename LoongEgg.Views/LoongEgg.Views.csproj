@@ -89,5 +89,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoongEgg.ViewModels\LoongEgg.ViewModels.csproj">
+      <Project>{f20d4a12-61fb-4053-8729-7720b16c8eaf}</Project>
+      <Name>LoongEgg.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

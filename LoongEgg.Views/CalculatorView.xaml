@@ -233,7 +233,10 @@
                     Style="{DynamicResource ButtonStyle.Default}" />
 
                 <!--  第1行  -->
-                <Button Content="Cos" Style="{DynamicResource ButtonStyle.Default}" />
+                <Button
+                    Command="{Binding InputCommand}"
+                    Content="Cos"
+                    Style="{DynamicResource ButtonStyle.Default}" />
                 <Button Content="Sin" Style="{DynamicResource ButtonStyle.Default}" />
                 <Button Content="^" Style="{DynamicResource ButtonStyle.Default}" />
                 <Button Content="+/-" Style="{DynamicResource ButtonStyle.Default}" />

@@ -60,7 +60,7 @@ namespace LoongEgg.MathPro
         const double Deg2Rad = Math.PI / 180.0;
 
         /// <summary>
-        /// 函数运算
+        /// 函数运算, [注意]角的大小以角度记， 不是弧度
         /// </summary>
         /// <param name="fun"></param>
         /// <param name="d"></param>
