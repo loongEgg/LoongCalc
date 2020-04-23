@@ -23,11 +23,64 @@ namespace LoongEgg.LoongCalc
         // TODO: 23-6 在控制台中启动WPF窗体
         [STAThread]// 不要忘了这个标注
         static void Main(string[] args) {
+            // 后进先出 Stack
 
-            // TODO: 34-值类型、引用类型和ref的大坑
+
+            // 先进先出 Queue
+        }
+
+        // TODO: 35-1 Stack,Queue
+        static void StackAndQueue() {
+            Logger.EnableAll();
+
+            // 后进先出 stack
+            Stack<int> stack = new Stack<int>();
+            int tmp;
+            StringBuilder build = new StringBuilder();
+
+            stack.Push(1); 
+            stack.Push(2);
+            stack.Push(3);
+            stack.ToList().ForEach(item => build.Append($"{item} "));
+            Logger.WriteInfor($"The stack to list is: {build.ToString()}");
+
+            tmp = stack.Pop();
+            Logger.WriteDebug($"stack pop > {tmp}");
+
+            tmp = stack.Pop();
+            Logger.WriteDebug($"stack pop > {tmp}");
+
+            tmp = stack.Pop();
+            Logger.WriteDebug($"stack pop > {tmp}");
+
+            // 先进先出 queue
+            Queue<int> queue = new Queue<int>(); 
+            build = new StringBuilder();
+
+            queue.Enqueue(1); 
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.ToList().ForEach(item => build.Append($"{item} "));
+            Logger.WriteError($"The queue to list is: {build.ToString()}");
+
+            tmp = queue.Dequeue();
+            Logger.WriteDebug($"queue Dequeue > {tmp}");
+
+            tmp = queue.Dequeue();
+            Logger.WriteDebug($"queue Dequeue > {tmp}");
+
+            tmp = queue.Dequeue();
+            Logger.WriteDebug($"queue Dequeue > {tmp}");
+
+            Console.ReadKey();
+        }
+
+        // TODO: 34-值类型、引用类型和ref的大坑
+        static void ValueAndReference() {
+             
             // 值类型  ：int double float bool
             // 引用类型：剩下的大多数
-            Logger.Enable(LoggerType.Debug | LoggerType.Console | LoggerType.File, LoggerLevel.Debug);
+            Logger.Enable(LoggerType.Console | LoggerType.Debug | LoggerType.File, LoggerLevel.Debug);
 
             int a = 9;
             int b = a;
@@ -67,9 +120,7 @@ namespace LoongEgg.LoongCalc
 
             public int Age { get; set; }
         }
-
-        
-
+         
         static void AppRun() {
             CalculatorView view = new CalculatorView();
 

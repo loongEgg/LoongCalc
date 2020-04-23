@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LoongEgg.LoongLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependency\LoongEgg.LoongLogger.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -51,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CharExtensions_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReversPolishNotation_Test.cs" />
     <Compile Include="Token_Test.cs" />
   </ItemGroup>
   <ItemGroup>
