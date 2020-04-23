@@ -60,6 +60,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LoongEgg.ViewModels\LoongEgg.ViewModels.csproj">
+      <Project>{f20d4a12-61fb-4053-8729-7720b16c8eaf}</Project>
+      <Name>LoongEgg.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LoongEgg.Views\LoongEgg.Views.csproj">
       <Project>{93955769-d55a-4b5d-906b-c9fabe2a39be}</Project>
       <Name>LoongEgg.Views</Name>

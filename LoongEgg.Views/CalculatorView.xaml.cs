@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LoongEgg.ViewModels;
 
 namespace LoongEgg.Views
 {
@@ -22,8 +23,8 @@ namespace LoongEgg.Views
     {
         public CalculatorView() {
             InitializeComponent();
-            // TODO: 36-3
-            DataContext = new CalculatorViewModel();
+            // TODO: 36-3  
+            //DataContext = new CalcualtorViewModelDemo();
         }
 
         // TODO: 23-3 窗体移动代码

@@ -941,7 +941,7 @@ namespace LoongEgg.MathPro
 ```
 
 # Model、View和ViewModel的交互
-## 36-后端输入命令和UI中的Button通过Commmand binding实现交互
+## 36-后端输入命令和UI中的Button通过Command binding实现交互
 1. 引用MVVM框架
 2. 创建一个继承BaseViewModel的类
 ```c#
@@ -979,4 +979,28 @@ namespace LoongEgg.MathPro
             DragMove();
         }
     }
+```
+
+## 37-简单高效带语法提示的绑定, 控件自身作为CommandParameter
+1. 创建一个DesignModel
+```c#
+   // TODO: 37-1 创建DesignModel
+    public class DesignModel : CalculatorViewModel
+    {
+        public static CalculatorViewModel Instance { get; private set; } = new CalculatorViewModel(); 
+    }
+```
+2. 在UI引用DesignModel的静态属性
+```xml
+d:DataContext="{x:Static local:DesignModel.Instance}"
+```
+3. 带语法提示的绑定和将控件自身传出去
+```c#
+ <!--  第1行  -->
+                <Button
+                    Command="{Binding InputCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    Content="Cos"
+                    Style="{DynamicResource ButtonStyle.Default}" />
+            
 ```

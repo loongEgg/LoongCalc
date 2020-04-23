@@ -10,6 +10,19 @@ namespace LoongEgg.ViewModels
 	| LoongEgg@163.com 
 	|
 	*/
+    public class CalcualtorViewModelDemo : BaseViewModel
+    {
+        public ICommand InputCommand { get; private set; }
+
+        public CalcualtorViewModelDemo() {
+            InputCommand = new DelegateCommand(Input);
+        }
+
+        public void Input(object input) {
+            Logger.WriteInfor($"sth is being input 233333333 {input}...");
+        }
+    }
+
     public class CalculatorViewModel: BaseViewModel
     { 
         /*------------------------------------- Properties --------------------------------------*/

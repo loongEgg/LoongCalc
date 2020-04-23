@@ -8,6 +8,7 @@
     Title="CalculatorView"
     Width="360"
     Height="500"
+    d:DataContext="{x:Static local:DesignModel.Instance}"
     AllowsTransparency="True"
     Background="#FFB4D2EC"
     FontSize="22"
@@ -235,6 +236,7 @@
                 <!--  第1行  -->
                 <Button
                     Command="{Binding InputCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
                     Content="Cos"
                     Style="{DynamicResource ButtonStyle.Default}" />
                 <Button Content="Sin" Style="{DynamicResource ButtonStyle.Default}" />

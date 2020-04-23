@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using LoongEgg.Views;
 using System.Windows;
 using LoongEgg.LoongLogger;
+using LoongEgg.ViewModels;
 
 // TODO: 23-4 增加程序集引用
 //            PresentationCore
@@ -25,13 +26,16 @@ namespace LoongEgg.LoongCalc
         static void Main(string[] args) {
             Logger.EnableAll();
 
-            CalculatorView view = new CalculatorView();
+            CalculatorView view = new CalculatorView { DataContext = new CalcualtorViewModelDemo()};
 
             Application app = new Application();
 
             app.Run(view);
+
+            Logger.Disable();
         }
 
+        #region 历史示例
         // TODO: 35-1 Stack,Queue
         static void StackAndQueue() {
             Logger.EnableAll();
@@ -41,7 +45,7 @@ namespace LoongEgg.LoongCalc
             int tmp;
             StringBuilder build = new StringBuilder();
 
-            stack.Push(1); 
+            stack.Push(1);
             stack.Push(2);
             stack.Push(3);
             stack.ToList().ForEach(item => build.Append($"{item} "));
@@ -57,10 +61,10 @@ namespace LoongEgg.LoongCalc
             Logger.WriteDebug($"stack pop > {tmp}");
 
             // 先进先出 queue
-            Queue<int> queue = new Queue<int>(); 
+            Queue<int> queue = new Queue<int>();
             build = new StringBuilder();
 
-            queue.Enqueue(1); 
+            queue.Enqueue(1);
             queue.Enqueue(2);
             queue.Enqueue(3);
             queue.ToList().ForEach(item => build.Append($"{item} "));
@@ -80,7 +84,7 @@ namespace LoongEgg.LoongCalc
 
         // TODO: 34-值类型、引用类型和ref的大坑
         static void ValueAndReference() {
-             
+
             // 值类型  ：int double float bool
             // 引用类型：剩下的大多数
             Logger.Enable(LoggerType.Console | LoggerType.Debug | LoggerType.File, LoggerLevel.Debug);
@@ -108,7 +112,7 @@ namespace LoongEgg.LoongCalc
             Logger.WriteDebug($"a={a}");
             ChangeSth(ref a);
             Logger.WriteDebug($"a={a}");
-            
+
             Logger.Disable();
             Console.ReadKey();
         }
@@ -123,13 +127,14 @@ namespace LoongEgg.LoongCalc
 
             public int Age { get; set; }
         }
-         
+
         static void AppRun() {
             CalculatorView view = new CalculatorView();
 
             Application app = new Application();
 
             app.Run(view);
-        }
+        } 
+        #endregion
     }
 }
