@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.MathSimple", "Loon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.MathSimple.Test", "LoongEgg.MathSimple.Test\LoongEgg.MathSimple.Test.csproj", "{567CC538-FFDD-4EDA-BA3F-25015B98299C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.Contract", "LoongEgg.Contract\LoongEgg.Contract.csproj", "{2AFC736F-46D3-424F-B4C7-AA0A563CF8B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{567CC538-FFDD-4EDA-BA3F-25015B98299C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{567CC538-FFDD-4EDA-BA3F-25015B98299C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{567CC538-FFDD-4EDA-BA3F-25015B98299C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AFC736F-46D3-424F-B4C7-AA0A563CF8B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AFC736F-46D3-424F-B4C7-AA0A563CF8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AFC736F-46D3-424F-B4C7-AA0A563CF8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AFC736F-46D3-424F-B4C7-AA0A563CF8B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

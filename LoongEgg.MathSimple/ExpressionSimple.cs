@@ -6,10 +6,12 @@
  | 更改记录：
  |			 时间		版本		更改
  */
+using LoongEgg.Contract;
+
 namespace LoongEgg.MathSimple
 {
     // TODO: 38-3 新建一个ExpressionSimple类来处理简单的计算
-    public class ExpressionSimple
+    public class ExpressionSimple : IExpression
     {
         /*---------------------------------------- Fields ---------------------------------------*/
 

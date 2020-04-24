@@ -1,8 +1,8 @@
-﻿using LoongEgg.LoongCore;
+﻿using LoongEgg.Contract;
+using LoongEgg.LoongCore;
 using LoongEgg.LoongLogger;
 using System.Windows.Controls;
 using System.Windows.Input;
-using LoongEgg.MathSimple;
 
 namespace LoongEgg.ViewModels
 {
@@ -27,12 +27,16 @@ namespace LoongEgg.ViewModels
         private string _Result;
 
 
-        private ExpressionSimple _Expression;
+        private IExpression _Expression; 
 
         /*------------------------------------- Constructor -------------------------------------*/
-        public CalculatorViewModel() {
+        public CalculatorViewModel(IExpression expression) {
             InputCommand = new DelegateCommand(Input);
-            _Expression = new ExpressionSimple();
+            _Expression = expression;
+        }
+
+        public CalculatorViewModel() {
+
         }
 
         /*------------------------------------ Public Methods -----------------------------------*/

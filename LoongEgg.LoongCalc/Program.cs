@@ -8,6 +8,7 @@ using LoongEgg.Views;
 using System.Windows;
 using LoongEgg.LoongLogger;
 using LoongEgg.ViewModels;
+using LoongEgg.MathSimple;
 
 // TODO: 23-4 增加程序集引用
 //            PresentationCore
@@ -26,7 +27,7 @@ namespace LoongEgg.LoongCalc
         static void Main(string[] args) {
             Logger.EnableAll();
 
-            CalculatorView view = new CalculatorView { DataContext = new CalculatorViewModel()};
+            CalculatorView view = new CalculatorView { DataContext = new CalculatorViewModel(new ExpressionSimple())};
 
             Application app = new Application();
 

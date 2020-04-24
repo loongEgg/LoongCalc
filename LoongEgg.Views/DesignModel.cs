@@ -11,8 +11,7 @@ using LoongEgg.ViewModels;
 namespace LoongEgg.Views
 {
 
-    public class DesignModel {
-
+    public class DesignModel { 
         public static CalculatorViewModel Instance { get; private set; } = new CalculatorViewModel(); 
     }
 }

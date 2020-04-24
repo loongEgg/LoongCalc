@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharExtensions.cs" />
+    <Compile Include="ExpressionPro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReversePolishNotation.MathCore.cs" />
     <Compile Include="ReversePolishNotation.cs" />
@@ -52,6 +53,12 @@
     <Compile Include="Token.cs" />
     <Compile Include="Token.Static.cs" />
     <Compile Include="TokenType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoongEgg.Contract\LoongEgg.Contract.csproj">
+      <Project>{2afc736f-46d3-424f-b4c7-aa0a563cf8b0}</Project>
+      <Name>LoongEgg.Contract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

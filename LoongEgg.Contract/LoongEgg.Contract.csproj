@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F20D4A12-61FB-4053-8729-7720B16C8EAF}</ProjectGuid>
+    <ProjectGuid>{2AFC736F-46D3-424F-B4C7-AA0A563CF8B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoongEgg.ViewModels</RootNamespace>
-    <AssemblyName>LoongEgg.ViewModels</AssemblyName>
+    <RootNamespace>LoongEgg.Contract</RootNamespace>
+    <AssemblyName>LoongEgg.Contract</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,14 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LoongEgg.LoongCore">
-      <HintPath>..\Dependency\LoongEgg.LoongCore.dll</HintPath>
-    </Reference>
-    <Reference Include="LoongEgg.LoongLogger">
-      <HintPath>..\Dependency\LoongEgg.LoongLogger.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,14 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculatorViewModel.cs" />
+    <Compile Include="IExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LoongEgg.Contract\LoongEgg.Contract.csproj">
-      <Project>{2afc736f-46d3-424f-b4c7-aa0a563cf8b0}</Project>
-      <Name>LoongEgg.Contract</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
