@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.MathPro", "LoongEg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.MathPro.Test", "LoongEgg.MathPro.Test\LoongEgg.MathPro.Test.csproj", "{A203B4A0-0558-4CF1-91A1-47DF2BE129E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.MathSimple", "LoongEgg.MathSimple\LoongEgg.MathSimple.csproj", "{5B7CAB5B-E05F-4BA0-B789-EF9BBB907C5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.MathSimple.Test", "LoongEgg.MathSimple.Test\LoongEgg.MathSimple.Test.csproj", "{567CC538-FFDD-4EDA-BA3F-25015B98299C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{A203B4A0-0558-4CF1-91A1-47DF2BE129E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A203B4A0-0558-4CF1-91A1-47DF2BE129E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A203B4A0-0558-4CF1-91A1-47DF2BE129E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B7CAB5B-E05F-4BA0-B789-EF9BBB907C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B7CAB5B-E05F-4BA0-B789-EF9BBB907C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B7CAB5B-E05F-4BA0-B789-EF9BBB907C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B7CAB5B-E05F-4BA0-B789-EF9BBB907C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567CC538-FFDD-4EDA-BA3F-25015B98299C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567CC538-FFDD-4EDA-BA3F-25015B98299C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567CC538-FFDD-4EDA-BA3F-25015B98299C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567CC538-FFDD-4EDA-BA3F-25015B98299C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

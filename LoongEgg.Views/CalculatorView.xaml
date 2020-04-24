@@ -127,6 +127,8 @@
             <Style x:Key="ButtonStyle.Default" TargetType="{x:Type Button}">
                 <Setter Property="Width" Value="60" />
                 <Setter Property="Height" Value="36" />
+                <Setter Property="Command" Value="{Binding InputCommand}" />
+                <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}}" />
                 <Setter Property="Background" Value="#FFD9E9F7" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -220,6 +222,11 @@
                 Fill="#FF343434"
                 RadiusX="9"
                 RadiusY="9" />
+            <TextBlock
+                Foreground="White"
+                Margin="16"
+                Text="{Binding Result}"
+                TextAlignment="Right" />
         </Grid>
 
         <Grid Grid.Row="2" Margin="-10,0,-10,0">
@@ -234,11 +241,7 @@
                     Style="{DynamicResource ButtonStyle.Default}" />
 
                 <!--  第1行  -->
-                <Button
-                    Command="{Binding InputCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
-                    Content="Cos"
-                    Style="{DynamicResource ButtonStyle.Default}" />
+                <Button Content="Cos" Style="{DynamicResource ButtonStyle.Default}" />
                 <Button Content="Sin" Style="{DynamicResource ButtonStyle.Default}" />
                 <Button Content="^" Style="{DynamicResource ButtonStyle.Default}" />
                 <Button Content="+/-" Style="{DynamicResource ButtonStyle.Default}" />

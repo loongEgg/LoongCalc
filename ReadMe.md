@@ -980,7 +980,6 @@ namespace LoongEgg.MathPro
         }
     }
 ```
-
 ## 37-简单高效带语法提示的绑定, 控件自身作为CommandParameter
 1. 创建一个DesignModel
 ```c#
@@ -1003,4 +1002,103 @@ d:DataContext="{x:Static local:DesignModel.Instance}"
                     Content="Cos"
                     Style="{DynamicResource ButtonStyle.Default}" />
             
+```
+
+## 38-ViewModel-Model间简单计算器交互的实现
+1. 获取Button的Content
+```c#
+public void Input(object input) {
+            if (input is Button btn) {
+                // TODO: 38-1 获取Button的Content
+                string inp = btn.Content.ToString();
+                Result = _Expression.Push(inp);
+                Logger.WriteInfor($"Sth input {Result}...");
+            }
+        }
+```
+2. 用扩展方法获取输入的类型
+```C#
+   // TODO: 38-2用扩展方法获取输入的类型
+    public static class StringExtensions
+    {
+		/// <summary>
+        /// 是操作符? +-*/^
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static bool IsOperator(this string self) => "+-*/^".Contains(self);
+
+        // 是函数？
+        public static bool IsFunction(this string self) => (!Double.TryParse(self, out double d) && !self.IsOperator());
+
+        // 是操作数
+        public static bool IsOperand(this string self) => Double.TryParse(self, out double d);
+    }
+```
+3. 新建一个ExpressionSimple类来处理简单的计算
+```C#
+/* 
+ | 个人微信：InnerGeeker
+ | 联系邮箱：LoongEgg@163.com 
+ | 创建时间：2020/4/24 20:38:54
+ | 主要用途：
+ | 更改记录：
+ |			 时间		版本		更改
+ */
+namespace LoongEgg.MathSimple
+{
+    // TODO: 38-3 新建一个ExpressionSimple类来处理简单的计算
+    public class ExpressionSimple
+    {
+        /*---------------------------------------- Fields ---------------------------------------*/
+
+        /*-------------------------------------- Properties -------------------------------------*/
+        public string Left { get; private set; } = "";
+        public string Right { get; private set; } = "";
+        public string Operator { get; private set; } = "";
+
+        /*-------------------------------- Dependency Properties --------------------------------*/
+
+        /*------------------------------------- Constructors ------------------------------------*/
+
+        /*------------------------------------ Public Methods -----------------------------------*/
+         public string Push(string inp) {
+            if(inp == "=") {
+                if( Left != "" && Right != "") {
+                    var tmp ="";
+                    switch (Operator) {
+                        case "+": tmp = (double.Parse(Left) + double.Parse(Right)).ToString(); break;
+                        case "-": tmp =  (double.Parse(Left) - double.Parse(Right)).ToString();break;
+                        case "*": tmp =  (double.Parse(Left) * double.Parse(Right)).ToString();break;
+                        case "/": tmp =  (double.Parse(Left) / double.Parse(Right)).ToString();break;
+                        default: tmp =  "";break;
+                    }
+                    Left = "";
+                    Right = "";
+                    Operator = "";
+                    return tmp;
+                }
+            }
+
+            if (inp.IsOperator()) {
+                if(Left == "") {
+
+                }
+                else {
+                    Operator = inp;
+                }
+            }else if (inp.IsOperand()) { 
+
+                if(Operator != "") {
+                    Right += inp;
+                }
+                else {
+                    Left += inp;
+                }
+            }
+            return Left + Operator + Right;
+        }
+        /*------------------------------------ Private Method -----------------------------------*/
+    }
+}
 ```

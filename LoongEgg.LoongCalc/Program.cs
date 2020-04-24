@@ -26,7 +26,7 @@ namespace LoongEgg.LoongCalc
         static void Main(string[] args) {
             Logger.EnableAll();
 
-            CalculatorView view = new CalculatorView { DataContext = new CalcualtorViewModelDemo()};
+            CalculatorView view = new CalculatorView { DataContext = new CalculatorViewModel()};
 
             Application app = new Application();
 

@@ -1,6 +1,8 @@
 ﻿using LoongEgg.LoongCore;
 using LoongEgg.LoongLogger;
+using System.Windows.Controls;
 using System.Windows.Input;
+using LoongEgg.MathSimple;
 
 namespace LoongEgg.ViewModels
 {
@@ -10,33 +12,37 @@ namespace LoongEgg.ViewModels
 	| LoongEgg@163.com 
 	|
 	*/
-    public class CalcualtorViewModelDemo : BaseViewModel
-    {
-        public ICommand InputCommand { get; private set; }
-
-        public CalcualtorViewModelDemo() {
-            InputCommand = new DelegateCommand(Input);
-        }
-
-        public void Input(object input) {
-            Logger.WriteInfor($"sth is being input 233333333 {input}...");
-        }
-    }
-
+  
     public class CalculatorViewModel: BaseViewModel
     { 
         /*------------------------------------- Properties --------------------------------------*/
         // TODO: 36-2
-        public ICommand InputCommand { get; private set; } 
+        public ICommand InputCommand { get; private set; }
+
+
+        public string Result {
+            get => _Result;
+            set => SetProperty(ref _Result, value);
+        }
+        private string _Result;
+
+
+        private ExpressionSimple _Expression;
 
         /*------------------------------------- Constructor -------------------------------------*/
         public CalculatorViewModel() {
             InputCommand = new DelegateCommand(Input);
+            _Expression = new ExpressionSimple();
         }
 
-        /*------------------------------------ Public Methods -----------------------------------*/ 
+        /*------------------------------------ Public Methods -----------------------------------*/
         public void Input(object input) {
-            Logger.WriteInfor("Sth input ...");
+            if (input is Button btn) {
+                // TODO: 38-1 获取Button的Content
+                string inp = btn.Content.ToString();
+                Result = _Expression.Push(inp);
+                Logger.WriteInfor($"Sth input {Result}...");
+            }
         }
     }
 }
