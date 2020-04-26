@@ -64,6 +64,10 @@
       <Project>{2AFC736F-46D3-424F-B4C7-AA0A563CF8B0}</Project>
       <Name>LoongEgg.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LoongEgg.MathPro\LoongEgg.MathPro.csproj">
+      <Project>{65573e8c-e0d7-4e25-b1a9-22776dc77388}</Project>
+      <Name>LoongEgg.MathPro</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LoongEgg.MathSimple\LoongEgg.MathSimple.csproj">
       <Project>{5b7cab5b-e05f-4ba0-b789-ef9bbb907c5e}</Project>
       <Name>LoongEgg.MathSimple</Name>

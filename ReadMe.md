@@ -1003,7 +1003,6 @@ d:DataContext="{x:Static local:DesignModel.Instance}"
                     Style="{DynamicResource ButtonStyle.Default}" />
             
 ```
-
 ## 38-ViewModel-Model间简单计算器交互的实现
 1. 获取Button的Content
 ```c#
@@ -1102,3 +1101,6 @@ namespace LoongEgg.MathSimple
     }
 }
 ```
+## 39-渣男ViewModel抛弃Model,与Interface共度余生
+
+## 40-用依赖注入DI来实现控制反转IoC，高级计算器实现

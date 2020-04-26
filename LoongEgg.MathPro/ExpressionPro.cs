@@ -18,8 +18,40 @@ namespace LoongEgg.MathPro
 
     public class ExpressionPro : IExpression
     {
+        private List<Token> Tokens = new List<Token>();
+
+        public Token Last {
+            get { return Tokens[Tokens.Count - 1]; }
+            set { Tokens[Tokens.Count - 1] = value; }
+        } 
+
         public string Push(string inp) {
-            throw new NotImplementedException();
+            if (inp == "=") {
+                if (Tokens.Any()) {
+                    var post = ReversePolishNotation.ConvertToPostFix(Tokens);
+                    var res = ReversePolishNotation.EvaluatePostFix(post);
+                    Tokens = new List<Token>();
+                    return res.ToString();
+                }
+            }
+
+            if(Tokens.Count == 0) {
+                Tokens.Add(new Token(inp));
+            }
+            else {
+                if (Last.Type == TokenType.Operand && inp.IsOperand())
+                    Last = new Token(Last.NormalizeString + inp);
+                else
+                    Tokens.Add(new Token(inp));
+            }
+
+            StringBuilder build = new StringBuilder();
+            Tokens.ForEach(t => build.Append(t.NormalizeString + " "));
+            return build.ToString();
+
         }
     }
+
+
+     
 }
