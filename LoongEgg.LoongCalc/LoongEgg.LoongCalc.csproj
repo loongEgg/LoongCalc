@@ -34,6 +34,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>FriedEgg.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LoongEgg.LoongLogger">
       <HintPath>..\Dependency\LoongEgg.LoongLogger.dll</HintPath>
@@ -80,6 +83,9 @@
       <Project>{93955769-d55a-4b5d-906b-c9fabe2a39be}</Project>
       <Name>LoongEgg.Views</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FriedEgg.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
